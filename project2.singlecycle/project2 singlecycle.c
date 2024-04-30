@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <memory.h>
 //function initialize
 int reg(int reg1, int reg2, int writeReg);
 int control(int opcode);
@@ -39,10 +40,10 @@ struct IF_ID{
     int pc[2];
 
 };
-struct IF_ID la1
+struct IF_ID la1;
 
 
-struct ID_EX{
+struct ID_EX {
     int pc[2];
     int readData1[2];
     int readData2[2];
@@ -53,7 +54,8 @@ struct ID_EX{
     int m;
     int ex;
 };
-struct ID_EX la2
+
+struct ID_EX la2;
 
 struct EX_MEM{
     int after_addpc[2];
@@ -67,7 +69,7 @@ struct EX_MEM{
 
 
 };
-struct EX_MEM la3
+struct EX_MEM la3;
 
 
 struct MEM_WB{
@@ -77,7 +79,8 @@ struct MEM_WB{
     int wb;
 
 };
-struct MEM_WB la4
+
+struct MEM_WB la4;
 
 //control signals
 int RegDst = 0;
@@ -108,7 +111,7 @@ int clock = 0;//to check the clock cycle
 
 int main(int argc, char* argv[]) {
     //handling input args
-    char* input_file = "simple.bin";//file name which want to open
+    char* input_file = "simple3.bin";//file name which want to open
     FILE* fp;
     int ret;
     int fin = 0;
@@ -276,8 +279,6 @@ void execute(){
 
         }
 }
-
-void 
 
 int control(int opcode) {//function to initialize the control signal->explain
     RegDst = opcode == 0;//r type instrution 
